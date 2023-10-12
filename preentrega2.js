@@ -57,3 +57,5 @@ function obtenerIngresos() {
   console.log("Gastos Variables:");
   gastosVariablesMensuales.forEach((gasto) => console.log(`${gasto.nombre}: $${gasto.cantidad.toFixed(2)}`));
   console.log(`Saldo Total: $${saldoTotal.toFixed(2)}`); 
+
+  //
