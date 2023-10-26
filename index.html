@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Asistente financiero</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    
+    <h1>Asistente financiero</h1>
+    <h2>Registro de Ingresos y Gastos</h2>
+    <form>
+        <label for="tipo">Tipo:</label>
+        <select id="tipo">
+            <option value="ingreso">Ingreso</option>
+            <option value="gastoFijo">Gasto Fijo</option>
+            <option value="gastoVariable">Gasto Variable</option>
+        </select>
 
+        <label for="monto">Monto:</label>
+        <input type="number" id="monto" placeholder="Ingrese el monto" required>
+
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" placeholder="Descripción">
+
+        <button type="button" id="registrar">Registrar</button>
+    </form>
+
+    <h2>Balance:</h2>
+    <p id="balance">0</p>
 
 
     <script src="./preentrega2.js"></script>
