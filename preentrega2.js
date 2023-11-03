@@ -1,14 +1,12 @@
-
 function calcularBalance() {
-  const ingresos = parseFloat(localStorage.getItem('ingreso')) || 0;
-  const gastosFijos = parseFloat(localStorage.getItem('gastoFijo')) || 0;
-  const gastosVariables = parseFloat(localStorage.getItem('gastoVariable')) || 0;
-  
-  const balance = ingresos - (gastosFijos + gastosVariables);
-  
+  const ingresos = JSON.parse(localStorage.getItem('ingreso')) || { monto: 0 };
+  const gastosFijos = JSON.parse(localStorage.getItem('gastoFijo')) || { monto: 0 };
+  const gastosVariables = JSON.parse(localStorage.getItem('gastoVariable')) || { monto: 0 };
+
+  const balance = Number(ingresos.monto) - (Number(gastosFijos.monto) + Number(gastosVariables.monto));
+
   return balance;
 }
-
 
 document.getElementById('registrar').addEventListener('click', function () {
   const tipo = document.getElementById('tipo').value;
@@ -19,17 +17,11 @@ document.getElementById('registrar').addEventListener('click', function () {
       alert('Por favor, ingrese un monto válido.');
       return;
   }
- 
- 
-  if (tipo === 'ingreso') {
-      localStorage.setItem('ingreso', monto);
-  } else if (tipo === 'gastoFijo') {
-      localStorage.setItem('gastoFijo', monto);
-  } else if (tipo === 'gastoVariable') {
-      localStorage.setItem('gastoVariable', monto);
-  }
 
-  
+  let item = JSON.parse(localStorage.getItem(tipo)) || { monto: 0 };
+  item.monto = (item.monto || 0) + monto;
+  localStorage.setItem(tipo, JSON.stringify(item));
+
   const balance = calcularBalance();
   document.getElementById('balance').textContent = balance;
 });
